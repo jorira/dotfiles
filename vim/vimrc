@@ -1,0 +1,82 @@
+"-- Base
+set nocompatible " be iMproved
+
+
+"-- Display --------------------------------------
+set number
+set laststatus=2 "0,1,2) ステータスラインを常に表示
+
+"-- Color --------------------------------------
+colorscheme desert
+syntax on
+
+filetype plugin indent on " required!
+
+
+"-- My Plugins ---------------------------------.
+"require vundel | git 'gmarik/vundle'
+"set rtp+=~/.vim/bundle/vundle/vundle.git
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'gmarik/vundle'
+" 補完
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+"Bundle 'taichouchou2/vim-rsence'
+"Bundle 'taichouchou2/vim-rsense' 
+"コメント
+Bundle 'tomtom/tcomment_vim'
+Bundle 'taichouchou2/surround.vim'
+"rails
+Bundle 'taichouchou2/vim-rails'
+Bundle 'romanvbabenko/rails.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'ujihisa/unite-rake'
+Bundle 'basyura/unite-rails'
+"Bundle 'tpope/vim-rails'
+"Bundle 'vim-ruby/vim-ruby'
+"
+Bundle 'tpope/vim-endwise.git'
+Bundle 'ruby-matchit'
+Bundle 'vim-scripts/dbext.vim'
+
+
+Bundle 'The-NERD-tree'
+Bundle 'mattn/googlereader-vim'
+
+"Rsence setting -------------------------
+let g:rsenseUseOmniFunc = 1
+let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
+
+function! SetUpRubySetting()
+setlocal completefunc=RSenseCompleteFunction
+nmap <buffer>tj :RSenseJumpToDefinition<CR>
+nmap <buffer>tk :RSenseWhereIs<CR>
+nmap <buffer>td :RSenseTypeHelp<CR>
+endfunction
+autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+
+filetype plugin indent on " required!
+
+" TwitVimの設定
+let twitvim_enable_ruby = 1
+
+" neocomplcacheの設定
+let g:neocomplcache_enable_at_startup = 1
+if !exists('g:neocomplcache_omni_patterns')
+let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+
+"-- KeyMap -----------------------
+" insertモードでhjkl移動を利用する
+imap <c-h> <Left>
+imap <c-j> <Down>
+imap <c-k> <Up>
+imap <c-l> <Right>
+
+"Private
+if filereadable(expand('~/.vimrc.private'))
+source ~/.vimrc.private
+endif
