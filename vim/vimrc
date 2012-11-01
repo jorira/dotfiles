@@ -22,8 +22,7 @@ Bundle 'gmarik/vundle'
 " 補完
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
-"Bundle 'taichouchou2/vim-rsence'
-"Bundle 'taichouchou2/vim-rsense' 
+Bundle 'm2ym/rsense'
 "コメント
 Bundle 'tomtom/tcomment_vim'
 Bundle 'taichouchou2/surround.vim'
@@ -33,8 +32,7 @@ Bundle 'romanvbabenko/rails.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'ujihisa/unite-rake'
 Bundle 'basyura/unite-rails'
-"Bundle 'tpope/vim-rails'
-"Bundle 'vim-ruby/vim-ruby'
+Bundle 'vim-ruby/vim-ruby'
 "
 Bundle 'tpope/vim-endwise.git'
 Bundle 'ruby-matchit'
@@ -46,15 +44,8 @@ Bundle 'mattn/googlereader-vim'
 
 "Rsence setting -------------------------
 let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
+let g:rsenseHome = '~/.vim/bundle/rsense'
 
-function! SetUpRubySetting()
-setlocal completefunc=RSenseCompleteFunction
-nmap <buffer>tj :RSenseJumpToDefinition<CR>
-nmap <buffer>tk :RSenseWhereIs<CR>
-nmap <buffer>td :RSenseTypeHelp<CR>
-endfunction
-autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 
 filetype plugin indent on " required!
 
