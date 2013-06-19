@@ -1,5 +1,9 @@
+"-- Alias
+let $clones="~/clones/"
 "-- Base
 set nocompatible " be iMproved
+set noswapfile
+set nobackup
 
 
 "-- Display --------------------------------------
@@ -33,6 +37,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'ujihisa/unite-rake'
 Bundle 'basyura/unite-rails'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'vim-scripts/dbext.vim'
 "
 Bundle 'tpope/vim-endwise.git'
 Bundle 'ruby-matchit'
@@ -66,6 +71,10 @@ imap <c-h> <Left>
 imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-l> <Right>
+nmap <F5> :NERDTree<Enter>
+nmap <F6> :NERDTreeClose<Enter>
+
+
 
 "Private
 if filereadable(expand('~/.vimrc.private'))
