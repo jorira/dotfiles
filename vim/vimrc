@@ -1,35 +1,40 @@
 "-- Alias
 let $clones="~/clones/"
 "-- Base
-set nocompatible " be iMproved
-set noswapfile
-set nobackup
-
-
-"-- Display --------------------------------------
-set number
+set noswapfile   " スワップなし
+set nocompatible " タブ保管
+set cursorline   " カーソルライン
+set number       " 行番号
 set laststatus=2 "0,1,2) ステータスラインを常に表示
+set autoindent   "自動インデント有効
+set shiftwidth=2 "自動インデントのスペース数
+set tabstop=2    "タブのスペース数
+set expandtab    "タブキーをスペースに置き換え
+colorscheme desert "カラーテーマ
+syntax on        "シンタックスハイライト
 
-"-- Color --------------------------------------
-colorscheme desert
-syntax on
+filetype plugin indent on "プラグイン
 
-filetype plugin indent on " required!
+augroup vimrc
+autocmd! FileType python setlocal shiftwidth=4 tabstop=2 softtabstop=2
+autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2
+augroup END
+
 
 
 "-- My Plugins ---------------------------------.
 "require vundel | git 'gmarik/vundle'
 "set rtp+=~/.vim/bundle/vundle/vundle.git
 set rtp+=~/.vim/bundle/vundle
+let g:vundle_default_git_proto='http' "git clone を httpで取得
 call vundle#rc()
 Bundle 'gmarik/vundle'
 " 補完
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'm2ym/rsense'
+Bundle 'neosnippets'
+Bundle 'neocomplcache'
 "コメント
 Bundle 'tomtom/tcomment_vim'
-Bundle 'taichouchou2/surround.vim'
+Bundle 'surround.vim'
 "rails
 Bundle 'taichouchou2/vim-rails'
 Bundle 'romanvbabenko/rails.vim'
@@ -37,15 +42,20 @@ Bundle 'Shougo/unite.vim'
 Bundle 'ujihisa/unite-rake'
 Bundle 'basyura/unite-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'vim-scripts/dbext.vim'
 "
 Bundle 'tpope/vim-endwise.git'
 Bundle 'ruby-matchit'
 Bundle 'vim-scripts/dbext.vim'
 
 
-Bundle 'The-NERD-tree'
-Bundle 'mattn/googlereader-vim'
+"Bundle 'The-NERD-tree'
+Bundle 'scrooloose/nerdtree'   
+Bundle 'html5.vim'
+Bundle 'Syntastic'
+
+"yum install ctag が必要
+Bundle 'taglist.vim'
+
 
 "Rsence setting -------------------------
 let g:rsenseUseOmniFunc = 1
@@ -54,15 +64,20 @@ let g:rsenseHome = '~/.vim/bundle/rsense'
 
 filetype plugin indent on " required!
 
-" TwitVimの設定
-let twitvim_enable_ruby = 1
-
 " neocomplcacheの設定
 let g:neocomplcache_enable_at_startup = 1
 if !exists('g:neocomplcache_omni_patterns')
 let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+" taglistのsetting----
+set tags=tags
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"  " ctagsのコマンド
+let Tlist_Show_One_File = 1                         " 現在表示中のファイルのみのタグしか表示しない
+let Tlist_Use_Right_Window = 1                    " 右側にtag listのウインドうを表示する
+let Tlist_Exit_OnlyWindow = 1                      " taglistのウインドウだけならVimを閉じる
+nmap <F8> :TlistToggle<Enter>
 
 
 "-- KeyMap -----------------------
@@ -71,8 +86,8 @@ imap <c-h> <Left>
 imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-l> <Right>
-nmap <F5> :NERDTree<Enter>
-nmap <F6> :NERDTreeClose<Enter>
+nmap <F9> :NERDTree<Enter>
+nmap <F10> :NERDTreeClose<Enter>
 
 
 
