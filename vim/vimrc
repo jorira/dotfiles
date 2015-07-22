@@ -21,7 +21,6 @@ if has('vim_starting')
   set rtp+=$HOME/.vim/bundle/neobundle.vim/
 endif
 call neobundle#begin(expand('$HOME/.vim/bundle'))
-let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "===================================================
@@ -31,6 +30,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "--- ユーティリティ---
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
+NeoBundle 'Shougo/neomru.vim'       " 最近使ったファイル
+NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
 
 if has('lua') && (( v:version == 703 && has('patch885')) || (v:version >= 704))
   NeoBundle 'Shougo/neocomplete'
@@ -82,46 +83,38 @@ filetype plugin indent on
 "===============================
 " Neocomplete setting
 "===============================
-if has('lua') && (( v:version == 703 && has('patch885')) || (v:version >= 704))
-  "---------------------------------------------------------------
-  " Vim 7.4以上且つLuaモジュールが有効な場合はNeocompleteを使う
-  "---------------------------------------------------------------
-  """ Disable AutoComplPop.
-  "let g:acp_enableAtStartup = 0
-  "" Use neocomplete.有効化
-  let g:neocomplete#enable_at_startup = 1
-  "" Use smartcase.
-  let g:neocomplete#enable_smart_case = 1
-  "" Set minimum syntax keyword length.
-  let g:neocomplete#sources#syntax#min_keyword_length = 3
-  "let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-  "
-  "" 辞書のパス
-  "let g:neocomplete#sources#dictionary#dictionaries = {
-  "    \ 'default' : '',
-  "    \ 'vimshell' : $HOME.'/.vimshell_hist',
-  "    \ 'scheme' : $HOME.'/.gosh_completions'
-  "        \ }
-  "
-  " Filetype別の曖昧補完の関数指定
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-else
-  "--------------------------------------------------
-  "Vim 7.3以下は neocomplcacheを使う
-  "--------------------------------------------------
-  "  neocomplcacheの設定
-  let g:neocomplcache_force_overwrite_completefunc=1
-  let g:neocomplcache_enable_at_startup = 1
-  if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-  endif
-  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-  
-endif
+""" Disable AutoComplPop.
+"let g:acp_enableAtStartup = 0
+"" Use neocomplete.有効化
+let g:neocomplete#enable_at_startup = 1
+"" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+"" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"
+"" 辞書のパス
+"let g:neocomplete#sources#dictionary#dictionaries = {
+"    \ 'default' : '',
+"    \ 'vimshell' : $HOME.'/.vimshell_hist',
+"    \ 'scheme' : $HOME.'/.gosh_completions'
+"        \ }
+"
+" Filetype別の曖昧補完の関数指定
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+"==================================
+" Unite
+"==================================
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+
 
 "==============================
 " KeyMap 
@@ -131,11 +124,18 @@ imap <c-h> <Left>
 imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-l> <Right>
+" NERDTree
 nmap <F9> :NERDTree<Enter>
 nmap <F10> :NERDTreeClose<Enter>
-
+" Unite
+nnoremap <silent> :uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> :ub :<C-u>Unite buffer<CR>
+nnoremap <silent> :uf :<C-u>Unite file<CR>
+nnoremap <silent> :ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
 "================================
 " workspace
 "==============================="
-let $workspace_path = '/var/workspace'
+let $workspace_path = 'C:\workspace\'
 command! Cdworks cd $workspace_path
+
