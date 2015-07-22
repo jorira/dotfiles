@@ -74,39 +74,50 @@ call neobundle#end()
 filetype plugin indent on
 "===============================
 
-"===============================
-" Unite setting
-"===============================
-
-
 
 "===============================
 " Neocomplete setting
 "===============================
-""" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplete.有効化
-let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-"" 辞書のパス
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-"
-" Filetype別の曖昧補完の関数指定
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if has('lua') && (( v:version == 703 && has('patch885')) || (v:version >= 704))
+  "---------------------------------------------------------------
+  " Vim 7.4以上且つLuaモジュールが有効な場合はNeocompleteを使う
+  "---------------------------------------------------------------
+  """ Disable AutoComplPop.
+  "let g:acp_enableAtStartup = 0
+  "" Use neocomplete.有効化
+  let g:neocomplete#enable_at_startup = 1
+  "" Use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+  "" Set minimum syntax keyword length.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  "let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+  "
+  "" 辞書のパス
+  "let g:neocomplete#sources#dictionary#dictionaries = {
+  "    \ 'default' : '',
+  "    \ 'vimshell' : $HOME.'/.vimshell_hist',
+  "    \ 'scheme' : $HOME.'/.gosh_completions'
+  "        \ }
+  "
+  " Filetype別の曖昧補完の関数指定
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+else
+  "--------------------------------------------------
+  "Vim 7.3以下は neocomplcacheを使う
+  "--------------------------------------------------
+  "  neocomplcacheの設定
+  let g:neocomplcache_force_overwrite_completefunc=1
+  let g:neocomplcache_enable_at_startup = 1
+  if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+  endif
+  let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
+endif
 
 "==================================
 " Unite
