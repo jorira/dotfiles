@@ -6,8 +6,10 @@ git clone https://github.com/Shougo/neobundle.vim.git vim.d/bundle/neobundle.vim
 
 # Make backup
 mv ~/.vimrc ~/.vimrc.save
+mv ~/.gvimrc ~/.gvimrc.save
 
 ln -s `pwd`/vimrc ~/.vimrc
+ln -s `pwd`/gvimrc ~/.gvimrc
 
 # Make backup
 mv ~/.vim  ~/.vim.save
