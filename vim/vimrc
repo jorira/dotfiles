@@ -148,6 +148,6 @@ nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
 "================================
 " workspace
 "==============================="
-let $workspace_path = 'C:\workspace\'
+let $workspace_path = '/var/workspace'
 command! Cdworks cd $workspace_path
 
