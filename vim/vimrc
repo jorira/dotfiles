@@ -32,6 +32,7 @@ NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
 NeoBundle 'Shougo/neomru.vim'       " 最近使ったファイル
 NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
+NeoBundle 'tomtom/tcomment_vim'     " Comment out plugin
 
 if has('lua') && (( v:version == 703 && has('patch885')) || (v:version >= 704))
   NeoBundle 'Shougo/neocomplete'
