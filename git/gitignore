@@ -1,0 +1,10 @@
+# eclipse
+/.project
+
+# renv
+/.ruby-gemset
+/.ruby-version
+
+# vim
+*.swp
+*~
