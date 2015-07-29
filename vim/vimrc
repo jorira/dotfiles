@@ -10,8 +10,8 @@ set autoindent              "自動インデント有効
 set shiftwidth=2            "自動インデントのスペース数
 set tabstop=2               "タブのスペース数
 set expandtab               "タブキーをスペースに置き換え
-colorscheme desertEx         "カラーテーマ
 syntax on                   "シンタックスハイライト
+set backupdir=~/.vim/tmp     " バックアップファイル格納先
 
 "===================================================
 " NeoBundle Starting
@@ -151,4 +151,10 @@ nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
 "==============================="
 let $workspace_path = '/var/workspace'
 command! Cdworks cd $workspace_path
+
+"================================
+" カラーテーマ
+"================================
+colorscheme desertEx "要256色, Colour-Sampler-Pack
+
 
