@@ -28,6 +28,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "===================================================
 
 "--- ユーティリティ---
+NeoBundle 'vim-scripts/Colour-Sampler-Pack' "カラースキーマのパック
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
 NeoBundle 'Shougo/neomru.vim'       " 最近使ったファイル
