@@ -1,0 +1,6 @@
+[user]
+  name = /any/
+  email = /any/
+[core]
+  editor = vim
+  excludesfile = ~/.gitignore
