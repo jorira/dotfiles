@@ -3,7 +3,7 @@
 "====================================
 set noswapfile              " no swap file
 set nocompatible            " vi非互換
-set cursorline              " カーソルライン
+"set cursorline              " カーソルライン
 set number                  " 行番号
 set laststatus=2            "0,1,2) ステータスラインを常に表示
 set autoindent              "自動インデント有効
@@ -11,7 +11,7 @@ set shiftwidth=2            "自動インデントのスペース数
 set tabstop=2               "タブのスペース数
 set expandtab               "タブキーをスペースに置き換え
 syntax on                   "シンタックスハイライト
-set backupdir=~/.vim/tmp     " バックアップファイル格納先
+set backupdir=~/.vim/tmp    " バックアップファイル格納先
 
 "===================================================
 " NeoBundle Starting
@@ -21,6 +21,7 @@ if has('vim_starting')
   set rtp+=$HOME/.vim/bundle/neobundle.vim/
 endif
 call neobundle#begin(expand('$HOME/.vim/bundle'))
+let g:neobundle_default_git_protocol='https'
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "===================================================
@@ -31,7 +32,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack' "カラースキーマのパック
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
-NeoBundle 'Shougo/neomru.vim'       " 最近使ったファイル
+NeoBundle 'ujihisa/unite-colorscheme' " Unite カラースキームプレビュー拡張 '
 NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
 NeoBundle 'tomtom/tcomment_vim'     " Comment out plugin
 
@@ -52,7 +53,7 @@ NeoBundle 'kana/vim-smartinput'     " C系の{}の補完
 
 
 "---言語: Ruby ---
-NeoBundle 'vim-ruby/vim-ruby'       " Ruby便利系全部いり 
+NeoBundle 'vim-ruby/vim-ruby'       " Ruby便利系全部いり
 
 "-- 言語: Javascript --
 NeoBundle 'pangloss/vim-javascript' "javascript 全部いり
@@ -63,19 +64,17 @@ NeoBundle 'othree/html5.vim'       " html5 補完
 NeoBundle 'mattn/emmet-vim'        " Emmet
 NeoBundle 'hail2u/vim-css3-syntax' " css3 シンタックス
 
-
 " -- Ruby on Rails系 --
 NeoBundle 'taichouchou2/vim-rails'  " Rails用の便利系
 NeoBundle 'romanvbabenko/rails.vim' " vim-railsの拡張 Rfactoryとか
 NeoBundle 'basyura/unite-rails'     " UniteのRails拡張番
 
 "===============================
-"NeoBundle Closing 
+"NeoBundle Closing
 "-------------------------------
 call neobundle#end()
 filetype plugin indent on
 "===============================
-
 
 "===============================
 " Neocomplete setting
@@ -128,16 +127,24 @@ let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 
+"==================================
+" Syntastic
+"==================================
+" let g:syntastic_mode_map = { 'mode': 'active',
+"                            \ 'active_filetypes': ['ruby', 'javascript'],
+"                            \ 'passive_filetypes': [] }
+"HTMLはチェックしない
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['html'] }
 
 "==============================
-" KeyMap 
+" KeyMap
 "===============================
 " insertモードでhjkl移動を利用する
 imap <c-h> <Left>
 imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-l> <Right>
-" NERDTree
 nmap <F9> :NERDTree<Enter>
 nmap <F10> :NERDTreeClose<Enter>
 " Unite
@@ -146,6 +153,7 @@ nnoremap <silent> :ub :<C-u>Unite buffer<CR>
 nnoremap <silent> :uf :<C-u>Unite file<CR>
 nnoremap <silent> :ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
+
 "================================
 " workspace
 "==============================="
@@ -155,6 +163,4 @@ command! Cdworks cd $workspace_path
 "================================
 " カラーテーマ
 "================================
-colorscheme desertEx "要256色, Colour-Sampler-Pack
-
-
+colorscheme desertEx "要256色環境, Colour-Sampler-Pack
