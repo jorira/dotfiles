@@ -35,6 +35,7 @@ NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
 NeoBundle 'ujihisa/unite-colorscheme' " Unite カラースキームプレビュー拡張 '
 NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
 NeoBundle 'tomtom/tcomment_vim'     " Comment out plugin
+NeoBundle 'tmhedberg/matchit'       " %によるカッコ移動の拡張(HTMLタグに対応)
 
 if has('lua') && (( v:version == 703 && has('patch885')) || (v:version >= 704))
   NeoBundle 'Shougo/neocomplete'
