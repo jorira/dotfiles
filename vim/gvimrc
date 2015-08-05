@@ -1,7 +1,7 @@
 "============================= 
 " gVim用 設定 
 "============================= 
-colorscheme desert 
+colorscheme desertEx 
 " 縦幅 
 set lines=60 
 " 横幅 
