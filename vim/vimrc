@@ -10,6 +10,7 @@ set autoindent              "自動インデント有効
 set shiftwidth=2            "自動インデントのスペース数
 set tabstop=2               "タブのスペース数
 set expandtab               "タブキーをスペースに置き換え
+set backspace=start,eol,indent " バックスペースキーの挙動
 syntax on                   "シンタックスハイライト
 set backupdir=~/.vim/tmp    " バックアップファイル格納先
 
