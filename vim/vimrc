@@ -32,7 +32,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "--- ユーティリティ---
 NeoBundle 'vim-scripts/Colour-Sampler-Pack' "カラースキーマのパック
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
-NeoBundle 'Shougo/unite.vim'        " インクリメントファイルサーチ
+NeoBundle 'Shougo/unite.vim'        " ファイラ、ファイル検索
+NeoBundle 'Shougo/vimproc.vim'      " 内部処理用 ~/.vim/bundle/vimprocで makeを実行すること
 NeoBundle 'ujihisa/unite-colorscheme' " Unite カラースキームプレビュー拡張 '
 NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
 NeoBundle 'tomtom/tcomment_vim'     " Comment out plugin
@@ -155,6 +156,7 @@ nnoremap <silent> :ub :<C-u>Unite buffer<CR>
 nnoremap <silent> :uf :<C-u>Unite file<CR>
 nnoremap <silent> :ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <C-p> :Unite file_rec/async:!<cr>
 
 "================================
 " workspace
