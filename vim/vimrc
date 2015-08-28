@@ -74,7 +74,10 @@ NeoBundle 'vim-ruby/vim-ruby'       " Ruby便利系全部いり
 NeoBundle 'pangloss/vim-javascript' "javascript 全部いり
 
 "-- 言語: Python --
-NeoBundle 'vim-scripts/python_match' "%の移動をPython用にしてくれるif/elseとか
+NeoBundle 'vim-scripts/python_match.vim' "%の移動をPython用にしてくれるif/elseとか
+
+"-- 言語: less --
+NeoBundle  'groenewege/vim-less'    "lessのシンタックスハイライト
 
 "-- マークアップ系 --
 NeoBundle 'othree/html5.vim'       " html5 補完
@@ -85,6 +88,9 @@ NeoBundle 'hail2u/vim-css3-syntax' " css3 シンタックス
 NeoBundle 'taichouchou2/vim-rails'  " Rails用の便利系
 NeoBundle 'romanvbabenko/rails.vim' " vim-railsの拡張 Rfactoryとか
 NeoBundle 'basyura/unite-rails'     " UniteのRails拡張番
+
+" -- Django系 --
+NeoBundle 'vim-scripts/django.vim'   "Djano用の便利系
 
 "===============================
 "NeoBundle Closing
