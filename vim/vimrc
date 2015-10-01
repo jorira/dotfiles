@@ -159,6 +159,7 @@ let g:unite_source_file_mru_limit = 200
 "HTMLはチェックしない
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['html'] }
+let g:syntastic_ruby_checkers = ['rubocop'] " Rubyのスタイルチェッカー gem rubocopが必須
 
 "=================================
 " NERDTree
