@@ -175,6 +175,8 @@ imap <c-h> <Left>
 imap <c-j> <Down>
 imap <c-k> <Up>
 imap <c-l> <Right>
+nmap <F5> :set nonumber<Enter>
+nmap <F6> :set number<Enter>
 nmap <F9> :NERDTree<Enter>
 nmap <F10> :NERDTreeClose<Enter>
 " Unite
