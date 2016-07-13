@@ -1,6 +1,8 @@
 [user]
   name = /any/
   email = /any/
+[color]
+  ui = auto
 [core]
   editor = vim
   excludesfile = ~/.gitignore
