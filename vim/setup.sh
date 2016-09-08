@@ -16,5 +16,6 @@ mv ~/.vim  ~/.vim.save
 
 ln -s `pwd`/vim.d ~/.vim
 
-echo "Done. Please exec Vim command ':NeoBundleInstall' "
+vim +":NeoBundleInstall" +:q
+echo "Done. vim setup. "
 
