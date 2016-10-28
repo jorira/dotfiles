@@ -45,6 +45,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'vim-scripts/Colour-Sampler-Pack' "カラースキーマのパック
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " ファイラ、ファイル検索
+NeoBundle 'Shougo/neomru.vim'       " uniteのfile_recで必要
 NeoBundle 'Shougo/vimproc.vim'      " 内部処理用 ~/.vim/bundle/vimprocで makeを実行すること
 NeoBundle 'ujihisa/unite-colorscheme' " Unite カラースキームプレビュー拡張 '
 NeoBundle 'itchyny/lightline.vim'   " ステータスバーをハイライト
