@@ -13,6 +13,9 @@ set expandtab               "タブキーをスペースに置き換え
 set backspace=start,eol,indent " バックスペースキーの挙動
 syntax on                   "シンタックスハイライト
 set backupdir=~/.vim/tmp    " バックアップファイル格納先
+set modifiable              " vimコマンドによるバッファ編集を許可する
+set write                   " vimコマンドによるファイル編集を許可する
+
 
 "====================================
 "言語別設定
