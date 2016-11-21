@@ -22,4 +22,5 @@ wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-com
 echo "source ~/.git-completion.bash" >> ~/.bashrc
 
 echo "Done. Setup git environment."
+echo "Please overwride [user] in ~/.gitconfig"
 
