@@ -23,4 +23,4 @@ echo "source ~/.git-completion.bash" >> ~/.bashrc
 
 echo "Done. Setup git environment."
 echo "Please overwride [user] in ~/.gitconfig"
-
+vi ~/.gitconfig
