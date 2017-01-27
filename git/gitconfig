@@ -11,3 +11,5 @@
   cm = commit
   s = status
   b = branch
+[merge]
+  ff = false
