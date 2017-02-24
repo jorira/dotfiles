@@ -209,4 +209,5 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 "===============================
 " XMLツリーの整形(HTMLも)
 :command XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
-
+" Rubocopでフォーマット置換
+:command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
