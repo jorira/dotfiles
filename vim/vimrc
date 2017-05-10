@@ -90,6 +90,7 @@ NeoBundle  'groenewege/vim-less'    "lessのシンタックスハイライト
 NeoBundle 'othree/html5.vim'       " html5 補完
 NeoBundle 'mattn/emmet-vim'        " Emmet
 NeoBundle 'hail2u/vim-css3-syntax' " css3 シンタックス
+NeoBundle 'tpope/vim-markdown'     " Markdown
 
 " -- Ruby on Rails系 --
 NeoBundle 'taichouchou2/vim-rails'  " Rails用の便利系
@@ -98,6 +99,10 @@ NeoBundle 'basyura/unite-rails'     " UniteのRails拡張番
 
 " -- Django系 --
 NeoBundle 'vim-scripts/django.vim'   "Djano用の便利系
+NeoBundle 'jmcomets/vim-pony'       " Djangoのファイルジャンプ
+
+" -- Git系 --
+NeoBundle 'tpope/vim-fugitive'     " Git操作
 
 "===============================
 "NeoBundle Closing
@@ -216,6 +221,6 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 " Alias
 "===============================
 " XMLツリーの整形(HTMLも)
-:command XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
+:command! XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
 " Rubocopでフォーマット置換
 :command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
