@@ -81,6 +81,7 @@ NeoBundle 'pangloss/vim-javascript' "javascript 全部いり
 
 "-- 言語: Python --
 NeoBundle 'vim-scripts/python_match.vim' "%の移動をPython用にしてくれるif/elseとか
+NeoBundle 'tell-k/vim-autopep8'     " autopep8を実行できるようにする pip autopep8が必須。autopep8はPEP8準拠に自動修正するツール
 
 "-- 言語: less --
 NeoBundle  'groenewege/vim-less'    "lessのシンタックスハイライト
@@ -166,6 +167,13 @@ let g:unite_source_file_mru_limit = 200
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['html'] }
 let g:syntastic_ruby_checkers = ['rubocop'] " Rubyのスタイルチェッカー gem rubocopが必須
+let g:syntastic_python_checkers = ["flake8"] " pythonのスタイルチェッカー pip flake8が必須
+
+"=================================
+" AutoPEP8
+"=================================
+" いちいちdiffを表示しないようにする
+let g:autopep8_disable_show_diff=1
 
 "=================================
 " NERDTree
