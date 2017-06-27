@@ -206,6 +206,9 @@ nnoremap <silent> :ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <C-p> :Unite file_rec/async:!<cr>
 
+" tagsジャンプの時に複数ある時は一覧表示
+nnoremap <C-]> g<C-]>
+
 "================================
 " workspace
 "==============================="
