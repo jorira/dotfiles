@@ -8,3 +8,5 @@
 # vim
 *.swp
 *~
+# ctag
+tags
