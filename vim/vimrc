@@ -227,3 +227,6 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 :command! XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
 " Rubocopでフォーマット置換
 :command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
+" カラーテーマのプレビュー
+:command! Ucolorscheme Unite -auto-preview colorscheme
+
