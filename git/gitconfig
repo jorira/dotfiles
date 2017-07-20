@@ -11,6 +11,8 @@
   cm = commit
   s = status
   b = branch
+  l = log
+  lg = "log --graph --oneline"
 [merge]
   ff = false
 [push]
