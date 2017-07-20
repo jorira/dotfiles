@@ -12,6 +12,7 @@
   s = status
   b = branch
   l = log
+  lo = "log --oneline"
   lg = "log --graph --oneline"
 [merge]
   ff = false
