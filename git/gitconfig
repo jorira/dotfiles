@@ -17,5 +17,5 @@
 [merge]
   ff = false
 [push]
-  default = matching
+  default = simple
   
