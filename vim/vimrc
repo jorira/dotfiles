@@ -24,6 +24,15 @@ set vb t_vb=                "ビープ音停止
 "===================================
 "Pythonのインデント設定
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+"HTML
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+"HTML 閉じタグ補完
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
 
 "=================================
 " grep時の |cw の省略
@@ -234,11 +243,3 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 :command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
 " カラーテーマのプレビュー
 :command! Ucolorscheme Unite -auto-preview colorscheme
-
-"=============================
-" Filetype
-"=============================
-"HTML
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
-
-
