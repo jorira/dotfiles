@@ -77,7 +77,10 @@ NeoBundle 'kana/vim-smartinput'     " C系の{}の補完
 NeoBundle 'vim-ruby/vim-ruby'       " Ruby便利系全部いり
 
 "-- 言語: Javascript --
-NeoBundle 'pangloss/vim-javascript' "javascript 全部いり
+"NeoBundle 'pangloss/vim-javascript' "javascript 全部いり
+NeoBundle 'othree/yajs.vim'
+NeoBundle 'maxmellon/vim-jsx-pretty'
+
 
 "-- 言語: Python --
 NeoBundle 'vim-scripts/python_match.vim' "%の移動をPython用にしてくれるif/elseとか
