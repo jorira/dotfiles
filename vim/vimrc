@@ -233,3 +233,10 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 " カラーテーマのプレビュー
 :command! Ucolorscheme Unite -auto-preview colorscheme
 
+"=============================
+" Filetype
+"=============================
+"HTML
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+
+
