@@ -71,7 +71,7 @@ NeoBundle 'tpope/vim-surround'      " テキストの範囲操作拡張 di'と�
 NeoBundle 'scrooloose/syntastic'    " 構文エラー検知
 NeoBundle 'tpope/vim-endwise.git'   " Rubyとかのdef-endの補完
 NeoBundle 'kana/vim-smartinput'     " C系の{}の補完
-
+NeoBundle 'lukaszb/vim-web-indent'  " HTMLのscriptのインデントとかいい感じになる
 
 "---言語: Ruby ---
 NeoBundle 'vim-ruby/vim-ruby'       " Ruby便利系全部いり
