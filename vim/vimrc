@@ -57,6 +57,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 "--- ユーティリティ---
 NeoBundle 'vim-scripts/Colour-Sampler-Pack' "カラースキーマのパック
+NeoBundle 'vim-scripts/grep.vim'    " :Grep :Rgrep
 NeoBundle 'scrooloose/nerdtree'     " NERD-tree ディレクトリツリー
 NeoBundle 'Shougo/unite.vim'        " ファイラ、ファイル検索
 NeoBundle 'Shougo/neomru.vim'       " uniteのfile_recで必要
@@ -91,7 +92,7 @@ NeoBundle 'othree/yajs.vim'          "javascript ES6ハイライタ
 NeoBundle 'othree/javascript-libraries-syntax.vim' "javascript 主要ライブラリ
 NeoBundle 'othree/es.next.syntax.vim'              "ES6
 NeoBundle 'maxmellon/vim-jsx-pretty' "javascript JSX対応
-
+NeoBundle 'posva/vim-vue'
 
 "-- 言語: Python --
 NeoBundle 'vim-scripts/python_match.vim' "%の移動をPython用にしてくれるif/elseとか
@@ -243,3 +244,14 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 :command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
 " カラーテーマのプレビュー
 :command! Ucolorscheme Unite -auto-preview colorscheme
+" Autopep8でコード自動修正
+:command! -bar Autopep8I call system("autopep8 -i " . expand("%:p"))|edit!|write
+
+
+"=============================
+" indent
+"=============================
+:let g:html_indent_script1 = "auto"
+
+" neobundle のログを出力したいとき
+" let g:neobundle#log_filename = $HOME . "/neobundle.log"
