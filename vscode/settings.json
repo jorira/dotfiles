@@ -1,0 +1,13 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.fontFamily": "'Ricty Diminished', Consolas, 'Courier New', monospace",
+    "editor.mouseWheelZoom": true,
+    "remote.SSH.remotePlatform": {
+        "dev-j": "linux"
+    },
+    "files.autoSave": "afterDelay",
+    "window.restoreWindows": "none",
+    "workbench.startupEditor": "newUntitledFile",
+    "es6-css-minify.minifyOnSave": "yes"
+
+}
