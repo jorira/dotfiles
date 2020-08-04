@@ -106,6 +106,7 @@ NeoBundle 'othree/html5.vim'       " html5 補完
 NeoBundle 'mattn/emmet-vim'        " Emmet
 NeoBundle 'hail2u/vim-css3-syntax' " css3 シンタックス
 NeoBundle 'tpope/vim-markdown'     " Markdown
+NeoBundle 'digitaltoad/vim-pug'    " pug
 
 " -- Ruby on Rails系 --
 NeoBundle 'taichouchou2/vim-rails'  " Rails用の便利系
