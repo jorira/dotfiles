@@ -199,7 +199,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['html'] }
 let g:syntastic_ruby_checkers = ['rubocop'] " Rubyのスタイルチェッカー gem rubocopが必須
 let g:syntastic_python_checkers = ["flake8"] " pythonのスタイルチェッカー pip flake8が必須
+" javacript
 let g:syntastic_javascript_checkers = ['eslint'] " npm eslint が必須
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
 "=================================
 " AutoPEP8
 "=================================
@@ -257,6 +260,8 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 :command! Ucolorscheme Unite -auto-preview colorscheme
 " Autopep8でコード自動修正
 :command! -bar Autopep8I call system("autopep8 -i " . expand("%:p"))|edit!|write
+" eslintでコード自動修正
+:command! -bar ESLintFix call system("autopep8 -i " . expand("%:p"))|edit!|write
 
 
 "=============================
