@@ -1,0 +1,47 @@
+#!/bin/bash
+set -e
+cmd_docker_compose="docker-compose"
+main_service="express"
+
+# 前処理
+$cmd_docker_compose stop
+$cmd_docker_compose up -d
+
+# デーモンでtmuxセッション開始
+tmux new-session -d
+
+# 水平分割2つ分
+tmux split-window -v
+tmux split-window -v
+
+# パネル上部の罫線を20ポイント移動
+tmux resize-pane -t 0 -U 20~
+#tmux resize-pane -t 1 -U 20~
+tmux resize-pane -t 2 -U 20~
+
+# パネルNo.0 コマンド
+# 最初の10秒dockerログを表示して、その後はapp.logを表示する
+COMPOSE_TIMEOUT=31536000 # 1年
+tmux send-keys -t 0 "COMPOSE_HTTP_TIMEOUT=${COMPOSE_TIMEOUT} $cmd_docker_compose logs -f --tail 100 ${main_service}" Enter
+
+
+# メインコンテナ起動まで待つ
+echo -n 'waiting.'
+until $cmd_docker_compose ps ${main_service}| grep --silent Up; do
+  echo -n '.'
+  sleep 1
+done
+
+# パネルNo.1 コマンド
+# 自動テスト
+tmux send-keys -t 1 "$cmd_docker_compose exec ${main_service} bash" Enter
+tmux send-keys -t 1 'npm run watch' Enter
+
+
+# パネルNo.2 コマンド
+# ターミナル
+tmux send-keys -t 2 "$cmd_docker_compose exec ${main_service} bash" Enter
+
+# デーモンのtmuxセッションにアタッチ
+# -2は256colorのオプション
+tmux -2 attach-session -d
