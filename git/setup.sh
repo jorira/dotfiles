@@ -18,7 +18,7 @@ fi
 ln -s `pwd`/gitconfig $CONFIG_PATH
 ln -s `pwd`/gitignore $IGNORE_PATH
 
-wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
 echo "source ~/.git-completion.bash" >> ~/.bashrc
 
 echo "Done. Setup git environment."
