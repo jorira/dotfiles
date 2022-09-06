@@ -93,7 +93,7 @@ NeoBundle 'othree/javascript-libraries-syntax.vim' "javascript 主要ライブ�
 NeoBundle 'othree/es.next.syntax.vim'              "ES6
 NeoBundle 'maxmellon/vim-jsx-pretty' "javascript JSX対応
 NeoBundle 'posva/vim-vue'
-
+NeoBundle 'prettier/vim-prettier'    " PrettierによるLint npm -g prettierで本体をインストールする必要あり
 "-- 言語: Python --
 NeoBundle 'vim-scripts/python_match.vim' "%の移動をPython用にしてくれるif/elseとか
 NeoBundle 'tell-k/vim-autopep8'     " autopep8を実行できるようにする pip autopep8が必須。autopep8はPEP8準拠に自動修正するツール
