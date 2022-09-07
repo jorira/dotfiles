@@ -91,6 +91,8 @@ call dein#add('othree/es.next.syntax.vim')              "ES6
 call dein#add('maxmellon/vim-jsx-pretty') "javascript JSX対応
 call dein#add('posva/vim-vue')
 call dein#add('prettier/vim-prettier')    " PrettierによるLint npm -g prettierで本体をインストールする必要あり
+call dein#add('heavenshell/vim-jsdoc')    " JSDoc npm -g lehre が必要。
+
 "-- 言語: Python --
 call dein#add('vim-scripts/python_match.vim') "%の移動をPython用にしてくれるif/elseとか
 call dein#add('tell-k/vim-autopep8')     " autopep8を実行できるようにする pip autopep8が必須。autopep8はPEP8準拠に自動修正するツール
@@ -235,3 +237,13 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 
 " neobundle のログを出力したいとき
 " let g:neobundle#log_filename = $HOME . "/neobundle.log"
+
+"=============================
+" JsDoc
+"
+" `npm -g install lehre`が必要
+" lehreのパスを指定する必要がある
+"=============================
+" nodeのbinのパスを取得する
+let nodebin = system('echo -n $(npm bin -g)')
+:let g:jsdoc_lehre_path = nodebin.'/lehre'
