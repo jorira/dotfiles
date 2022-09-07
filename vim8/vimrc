@@ -247,3 +247,7 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 " nodeのbinのパスを取得する
 let nodebin = system('echo -n $(npm bin -g)')
 :let g:jsdoc_lehre_path = nodebin.'/lehre'
+" コマンドのエイリアス
+command! JSDOC :JsDoc
+command! JSDOCFormat :JsDocFormat
+
