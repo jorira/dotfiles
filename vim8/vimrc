@@ -218,6 +218,8 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 "===============================
 " Alias
 "===============================
+" dein install
+:command! DeinInstall call dein#install()
 " XMLツリーの整形(HTMLも)
 :command! XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
 " Rubocopでフォーマット置換
@@ -228,15 +230,15 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 :command! -bar Autopep8I call system("autopep8 -i " . expand("%:p"))|edit!|write
 " eslintでコード自動修正
 :command! -bar ESLintFix call system("npx eslint --fix" . expand("%:p"))|edit!|write
+" JsDocのエイリアス
+:command! JSDOC :JsDoc
+:command! JSDOCFormat :JsDocFormat
 
 
 "=============================
 " indent
 "=============================
 :let g:html_indent_script1 = "auto"
-
-" neobundle のログを出力したいとき
-" let g:neobundle#log_filename = $HOME . "/neobundle.log"
 
 "=============================
 " JsDoc
@@ -247,7 +249,4 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 " nodeのbinのパスを取得する
 let nodebin = system('echo -n $(npm bin -g)')
 :let g:jsdoc_lehre_path = nodebin.'/lehre'
-" コマンドのエイリアス
-command! JSDOC :JsDoc
-command! JSDOCFormat :JsDocFormat
 
