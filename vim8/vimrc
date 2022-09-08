@@ -96,11 +96,11 @@ call dein#add('tmhedberg/matchit')       " %によるカッコ移動の拡張(HT
 call dein#add('tpope/vim-surround')      " テキストの範囲操作拡張 di'とか
 "---言語: 全般 ---
 call dein#add('scrooloose/syntastic')    " 構文エラー検知
-call dein#add('tpope/vim-endwise.git')   " Rubyとかのdef-endの補完
 call dein#add('kana/vim-smartinput')     " C系の{}の補完
-call dein#add('lukaszb/vim-web-indent')  " HTMLのscriptのインデントとかいい感じになる
+
 "---言語: Ruby ---
 call dein#add('vim-ruby/vim-ruby')       " Ruby便利系全部いり
+call dein#add('tpope/vim-endwise.git')   " Rubyとかのdef-endの補完
 
 "-- 言語: Javascript --
 call dein#add('pangloss/vim-javascript')  "javascript 全部いり
