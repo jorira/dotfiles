@@ -82,6 +82,14 @@ call dein#add('itchyny/lightline.vim')   " ステータスバーをハイライ�
 " --- CtrlP ----
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('mattn/ctrlp-matchfuzzy')  " 拡張matcher
+" -- deoplete
+call dein#add('Shougo/deoplete.nvim')  " 自動補完 pip install pynvim が必要(python3)
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+let g:deoplete#enable_at_startup = 1
+" -- // deoplete
 
 call dein#add('tomtom/tcomment_vim')     " Comment out plugin
 call dein#add('tmhedberg/matchit')       " %によるカッコ移動の拡張(HTMLタグに対応)
