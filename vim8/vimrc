@@ -161,9 +161,10 @@ nmap <F10> :NERDTreeClose<Enter>
 "=================================
 " CtrlP
 "=================================
+let g:ctrlp_working_path_mode = ''  " 検索開始ディレクトリ, ''はpwdの位置
+let g:ctrlp_custom_ignore = 'vendor\|tmp\|\node_modules\|DS_Store\|git\|__pycache__'
 " extension matcher.
 let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
-" let g:ctrlp_custom_ignore = 'vendor\|tmp\|\node_modules\|DS_Store\|git\|__pycache__'
 nnoremap <silent> :cb :<C-u>CtrlPBuffer<CR>
 nnoremap <silent> :cm :<C-u>CtrlPMRU<CR>
 
