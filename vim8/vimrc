@@ -19,6 +19,18 @@ set write                   " vimコマンドによるファイル編集を許�
 set list                    "不可視文字を可視化する
 set listchars=tab:>\ ,trail:~ "Tab(>)、行末の半角スペース(~)を明示的に表示する
 set vb t_vb=                "ビープ音停止
+"==============================
+" Base KeyMap
+"===============================
+" insertモードでhjkl移動を利用する
+imap <c-h> <Left>
+imap <c-j> <Down>
+imap <c-k> <Up>
+imap <c-l> <Right>
+nmap <F5> :set nonumber<Enter>
+nmap <F6> :set number<Enter>
+" tagsジャンプの時に複数ある時は一覧表示
+nnoremap <C-]> g<C-]>
 
 "====================================
 "言語別設定
@@ -41,9 +53,8 @@ augroup END
 autocmd QuickFixCmdPost *grep* cwindow ":vimgrepで自動でcwindowする
 
 "=========================================
-"dein Scripts-----------------------------
+"dein Scripts
 "=========================================
-
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -61,18 +72,17 @@ call dein#add($HONE.'/.cache/dein/repos/github.com/Shougo/dein.vim')
 "------------------------------------------------------------
 " Add or remove your plugins here like this:
 "------------------------------------------------------------
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
 call dein#add('vim-scripts/Colour-Sampler-Pack') "カラースキーマのパック
 call dein#add('vim-scripts/grep.vim')    " :Grep :Rgrep
 call dein#add('scrooloose/nerdtree')     " NERD-tree ディレクトリツリー
-call dein#add('Shougo/unite.vim')        " ファイラ、ファイル検索
 call dein#add('Shougo/neomru.vim')       " uniteのfile_recで必要
 call dein#add('Shougo/vimproc.vim', {'build' : 'make'})      " 内部処理用 ~/.vim/bundle/vimprocで makeを実行すること
-" set runtimepath+=~/.cache/dein/repo/github/Shougo/vimproc.vim/
 
-call dein#add('ujihisa/unite-colorscheme') " Unite カラースキームプレビュー拡張 '
 call dein#add('itchyny/lightline.vim')   " ステータスバーをハイライト
+" --- CtrlP ----
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('mattn/ctrlp-matchfuzzy')  " 拡張matcher
+
 call dein#add('tomtom/tcomment_vim')     " Comment out plugin
 call dein#add('tmhedberg/matchit')       " %によるカッコ移動の拡張(HTMLタグに対応)
 call dein#add('tpope/vim-surround')      " テキストの範囲操作拡張 di'とか
@@ -83,18 +93,18 @@ call dein#add('kana/vim-smartinput')     " C系の{}の補完
 call dein#add('lukaszb/vim-web-indent')  " HTMLのscriptのインデントとかいい感じになる
 "---言語: Ruby ---
 call dein#add('vim-ruby/vim-ruby')       " Ruby便利系全部いり
+
 "-- 言語: Javascript --
-"call dein#add('pangloss/vim-javascript')  "javascript 全部いり
+call dein#add('pangloss/vim-javascript')  "javascript 全部いり
 call dein#add('othree/yajs.vim')          "javascript ES6ハイライタ
 call dein#add('othree/javascript-libraries-syntax.vim') "javascript 主要ライブラリ
 call dein#add('othree/es.next.syntax.vim')              "ES6
 call dein#add('maxmellon/vim-jsx-pretty') "javascript JSX対応
 call dein#add('posva/vim-vue')
 call dein#add('prettier/vim-prettier')    " PrettierによるLint npm -g prettierで本体をインストールする必要あり
-call dein#add('heavenshell/vim-jsdoc')    " JSDoc npm -g lehre が必要。
-
+call dein#add('heavenshell/vim-jsdoc')    " JSDoc
 "-- 言語: Python --
-call dein#add('vim-scripts/python_match.vim') "%の移動をPython用にしてくれるif/elseとか
+call dein#add('vim-scripts/python_match.vim') " %の移動をPython用にしてくれるif/elseとか
 call dein#add('tell-k/vim-autopep8')     " autopep8を実行できるようにする pip autopep8が必須。autopep8はPEP8準拠に自動修正するツール
 "-- 言語: PHP
 call dein#add('beanworks/vim-phpfmt')   "PHPフォーマッタ
@@ -108,9 +118,9 @@ call dein#add('hail2u/vim-css3-syntax') " css3 シンタックス
 call dein#add('tpope/vim-markdown')     " Markdown
 
 " -- Ruby on Rails系 --
-call dein#add('taichouchou2/vim-rails')  " Rails用の便利系
-call dein#add('romanvbabenko/rails.vim') " vim-railsの拡張 Rfactoryとか
-call dein#add('basyura/unite-rails')     " UniteのRails拡張番
+call dein#add('tpope/vim-rails')  " Rails用の便利系
+" call dein#add('romanvbabenko/rails.vim') " vim-railsの拡張 Rfactoryとか
+" call dein#add('basyura/unite-rails')     " UniteのRails拡張番
 
 " -- Django系 --
 call dein#add('vim-scripts/django.vim')   "Djano用の便利系
@@ -132,9 +142,30 @@ syntax enable
 "  call dein#install()
 "endif
 
-"---------------------------------------------
-" End dein Scripts    ------------------------
+"// End dein Scripts
 "=============================================
+
+"================================
+" カラーテーマ
+"================================
+colorscheme desertEx "要256色環境, Colour-Sampler-Pack
+
+"=================================
+" NERDTree
+"=================================
+let NERDTreeIgnore = ['\.pyc$', 'node_modules', '__pycache__'] " pythonのバイナリは無視
+nmap <F9> :NERDTree<Enter>
+nmap <F10> :NERDTreeClose<Enter>
+
+
+"=================================
+" CtrlP
+"=================================
+" extension matcher.
+let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+" let g:ctrlp_custom_ignore = 'vendor\|tmp\|\node_modules\|DS_Store\|git\|__pycache__'
+nnoremap <silent> :cb :<C-u>CtrlPBuffer<CR>
+nnoremap <silent> :cm :<C-u>CtrlPMRU<CR>
 
 
 "=================================
@@ -144,22 +175,8 @@ syntax enable
 let g:lightline = { 'component': { 'filename': '%f'} }
 
 "==================================
-" Unite
-"==================================
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable =1
-let g:unite_source_file_mru_limit = 200
-"-- 検索不要なパスの指定
-let s:unite_ignore_file_rec_patterns= 'vendor/\|tmp/\|log/\.*$'
-call unite#custom#source('file_rec/async,file_rec/git','ignore_pattern', s:unite_ignore_file_rec_patterns)
-"--//
-
-"==================================
 " Syntastic
 "==================================
-" let g:syntastic_mode_map = { 'mode': 'active',
-"                            \ 'active_filetypes': ['ruby', 'javascript'],
-"                            \ 'passive_filetypes': [] }
 "HTMLはチェックしない
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['html'] }
@@ -175,48 +192,22 @@ let g:syntastic_javascript_eslint_exe = 'npx eslint --'
 " いちいちdiffを表示しないようにする
 let g:autopep8_disable_show_diff=1
 
-"=================================
-" NERDTree
-"=================================
-let NERDTreeIgnore = ['\.pyc$', 'node_modules'] " pythonのバイナリは無視
+" ===============================
+" Rails
+" ===============================
 
 
-"==============================
-" KeyMap
-"===============================
-" insertモードでhjkl移動を利用する
-imap <c-h> <Left>
-imap <c-j> <Down>
-imap <c-k> <Up>
-imap <c-l> <Right>
-nmap <F5> :set nonumber<Enter>
-nmap <F6> :set number<Enter>
-nmap <F9> :NERDTree<Enter>
-nmap <F10> :NERDTreeClose<Enter>
-" Unite
-nnoremap <silent> :uy :<C-u>Unite history/yank<CR>
-nnoremap <silent> :ub :<C-u>Unite buffer<CR>
-nnoremap <silent> :uf :<C-u>Unite file<CR>
-nnoremap <silent> :ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> :uu :<C-u>Unite file_mru buffer<CR>
-nnoremap <C-p> :Unite file_rec/async:!<cr>
-
-" tagsジャンプの時に複数ある時は一覧表示
-nnoremap <C-]> g<C-]>
-
-"================================
-" workspace
-"==============================="
-let $workspace_path = '/var/workspace'
-command! Cdworks cd $workspace_path
-
-"================================
-" カラーテーマ
-"================================
-colorscheme desertEx "要256色環境, Colour-Sampler-Pack
+"=============================
+" JsDoc~
+" `npm -g install lehre`が必要
+" lehreのパスを指定する必要がある
+"=============================
+" nodeのbinのパスを取得する
+:let nodebin = system('echo -n $(npm bin -g)')
+:let g:jsdoc_lehre_path = nodebin.'/lehre'
 
 "===============================
-" Alias
+" Command Alias
 "===============================
 " dein install
 :command! DeinInstall call dein#install()
@@ -233,20 +224,4 @@ colorscheme desertEx "要256色環境, Colour-Sampler-Pack
 " JsDocのエイリアス
 :command! JSDOC :JsDoc
 :command! JSDOCFormat :JsDocFormat
-
-
-"=============================
-" indent
-"=============================
-:let g:html_indent_script1 = "auto"
-
-"=============================
-" JsDoc
-"
-" `npm -g install lehre`が必要
-" lehreのパスを指定する必要がある
-"=============================
-" nodeのbinのパスを取得する
-let nodebin = system('echo -n $(npm bin -g)')
-:let g:jsdoc_lehre_path = nodebin.'/lehre'
 
