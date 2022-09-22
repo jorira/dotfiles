@@ -11,6 +11,7 @@
   cm = commit
   s = status
   b = branch
+  f = fetch
   l = log
   lo = "log --oneline"
   lg = "log --graph --oneline"
