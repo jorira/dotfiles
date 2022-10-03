@@ -15,6 +15,9 @@ ln -s `pwd`/vimrc ~/.vimrc
 # when gvim
 # ln -s `pwd`/gvimrc ~/.gvimrc
 
+# for "deoplete" dependency.
+pip install pynvim
+
 vim +":call dein#install()" +:q
 echo "Done. vim setup. "
 
