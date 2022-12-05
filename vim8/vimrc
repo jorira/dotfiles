@@ -216,6 +216,12 @@ let g:autopep8_disable_show_diff=1
 :let nodebin = system('echo -n $(npm bin -g)')
 :let g:jsdoc_lehre_path = nodebin.'/lehre'
 
+"==========================
+" Prettier
+"==========================
+:let g:prettier#config#tab_width= 2
+:let g:prettier#config#use_tabs = 'auto'
+
 "===============================
 " Command Alias
 "===============================
