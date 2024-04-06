@@ -170,6 +170,7 @@ nmap <F10> :NERDTreeClose<Enter>
 "=================================
 " CtrlP
 "=================================
+let g:ctrlp_custom_ignore = 'vendor\|tmp\|node_modules\|DS_Store\|git\|__pycache__\|data'
 let g:ctrlp_working_path_mode = ''  " 検索開始ディレクトリ, ''はpwdの位置
 let g:ctrlp_custom_ignore = 'vendor\|tmp\|\node_modules\|DS_Store\|git\|__pycache__'
 " extension matcher.
