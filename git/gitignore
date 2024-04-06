@@ -10,3 +10,10 @@
 *~
 # ctag
 tags
+.ctags
+# ide
+.ide
+
+# vscode devcontainer
+.devcontainer
+.vscode
