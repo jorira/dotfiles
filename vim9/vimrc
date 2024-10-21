@@ -1,0 +1,264 @@
+set verbosefile=~/.vim/vim_verbose.log
+set verbose=9
+"====================================
+" Base Setting
+"====================================
+set noswapfile              " no swap file
+set nocompatible            " vi非互換
+"set cursorline              " カーソルライン
+set number                  " 行番号
+set laststatus=2            "0,1,2) ステータスラインを常に表示
+set autoindent              "自動インデント有効
+set shiftwidth=2            "自動インデントのスペース数
+set tabstop=2               "タブのスペース数
+set expandtab               "タブキーをスペースに置き換え
+set backspace=start,eol,indent " バックスペースキーの挙動
+syntax on                   "シンタックスハイライト
+"set backupdir=~/.cache/tmp    " バックアップファイル格納先
+set nobackup
+set modifiable              " vimコマンドによるバッファ編集を許可する
+set write                   " vimコマンドによるファイル編集を許可する
+set list                    "不可視文字を可視化する
+set listchars=tab:>\ ,trail:~ "Tab(>)、行末の半角スペース(~)を明示的に表示する
+set vb t_vb=                "ビープ音停止
+set hlsearch                " 検索結果のハイライ
+"==============================
+" Base KeyMap
+"===============================
+" insertモードでhjkl移動を利用する
+imap <c-h> <Left>
+imap <c-j> <Down>
+imap <c-k> <Up>
+imap <c-l> <Right>
+nmap <F5> :set nonumber<Enter>
+nmap <F6> :set number<Enter>
+" tagsジャンプの時に複数ある時は一覧表示
+nnoremap <C-]> g<C-]>
+
+"====================================
+"言語別設定
+"===================================
+"Pythonのインデント設定
+autocmd! FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+"HTML
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+"HTML 閉じタグ補完
+augroup MyXML
+  autocmd!
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
+"=================================
+" grep時の |cw の省略
+"=================================
+autocmd QuickFixCmdPost *grep* cwindow ":vimgrepで自動でcwindowする
+
+"=========================================
+"dein Scripts
+"=========================================
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin($HOME.'/.cache/dein')
+
+" Let dein manage dein
+" Required:
+call dein#add($HONE.'/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+"------------------------------------------------------------
+" Add or remove your plugins here like this:
+"------------------------------------------------------------
+call dein#add('vim-scripts/Colour-Sampler-Pack') "カラースキーマのパック
+call dein#add('vim-scripts/grep.vim')    " :Grep :Rgrep
+call dein#add('scrooloose/nerdtree')     " NERD-tree ディレクトリツリー
+call dein#add('Shougo/neomru.vim')       " uniteのfile_recで必要
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})      " 内部処理用 ~/.vim/bundle/vimprocで makeを実行すること
+
+call dein#add('itchyny/lightline.vim')   " ステータスバーをハイライト
+" --- CtrlP ----
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('mattn/ctrlp-matchfuzzy')  " 拡張matcher
+" -- deoplete
+call dein#add('Shougo/deoplete.nvim')  " 自動補完 pip install pynvim が必要(python3)
+if !has('nvim')
+  call dein#add('roxma/nvim-yarp')
+  call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+let g:deoplete#enable_at_startup = 1
+" -- // deoplete
+"
+call dein#add('tomtom/tcomment_vim')     " Comment out plugin
+call dein#add('tmhedberg/matchit')       " %によるカッコ移動の拡張(HTMLタグに対応)
+call dein#add('tpope/vim-surround')      " テキストの範囲操作拡張 di'とか
+"---言語: 全般 ---
+call dein#add('kana/vim-smartinput')     " C系の{}の補完
+call dein#add('dense-analysis/ale')      " 構文チェッカー syntasticの後継
+
+"---言語: Ruby ---
+call dein#add('vim-ruby/vim-ruby')       " Ruby便利系全部いり
+call dein#add('tpope/vim-endwise.git')   " Rubyとかのdef-endの補完
+
+"-- 言語: Javascript --
+call dein#add('pangloss/vim-javascript')  "javascript 全部いり
+call dein#add('othree/yajs.vim')          "javascript ES6ハイライタ
+call dein#add('othree/javascript-libraries-syntax.vim') "javascript 主要ライブラリ
+call dein#add('othree/es.next.syntax.vim')              "ES6
+call dein#add('maxmellon/vim-jsx-pretty') "javascript JSX対応
+call dein#add('posva/vim-vue')
+call dein#add('prettier/vim-prettier')    " PrettierによるLint npm -g prettierで本体をインストールする必要あり
+call dein#add('heavenshell/vim-jsdoc')    " JSDoc
+"-- 言語: Python --
+call dein#add('vim-scripts/python_match.vim') " %の移動をPython用にしてくれるif/elseとか
+call dein#add('tell-k/vim-autopep8')     " autopep8を実行できるようにする pip autopep8が必須。autopep8はPEP8準拠に自動修正するツール
+"-- 言語: PHP
+call dein#add('beanworks/vim-phpfmt')   "PHPフォーマッタ
+"-- 言語: less --
+call dein#add('groenewege/vim-less')    "lessのシンタックスハイライト
+
+"-- マークアップ系 --
+call dein#add('othree/html5.vim')       " html5 補完
+call dein#add('mattn/emmet-vim')        " Emmet
+call dein#add('hail2u/vim-css3-syntax') " css3 シンタックス
+call dein#add('tpope/vim-markdown')     " Markdown
+
+" -- Ruby on Rails系 --
+call dein#add('tpope/vim-rails')  " Rails用の便利系
+" call dein#add('romanvbabenko/rails.vim') " vim-railsの拡張 Rfactoryとか
+" call dein#add('basyura/unite-rails')     " UniteのRails拡張番
+
+" -- Django系 --
+call dein#add('vim-scripts/django.vim')   "Djano用の便利系
+call dein#add('jmcomets/vim-pony')       " Djangoのファイルジャンプ
+
+" -- Git系 --
+call dein#add('tpope/vim-fugitive')     " Git操作
+" //------ END plugins list.  -------------------------------------------
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+"// End dein Scripts
+"=============================================
+
+"================================
+" カラーテーマ
+"================================
+colorscheme desertEx "要256色環境, Colour-Sampler-Pack
+
+"=================================
+" NERDTree
+"=================================
+let NERDTreeIgnore = ['\.pyc$', 'node_modules', '__pycache__'] " pythonのバイナリは無視
+nmap <F9> :NERDTree<Enter>
+nmap <F10> :NERDTreeClose<Enter>
+
+
+"=================================
+" CtrlP
+"=================================
+let g:ctrlp_custom_ignore = 'vendor\|tmp\|node_modules\|DS_Store\|git\|__pycache__\|data'
+let g:ctrlp_working_path_mode = ''  " 検索開始ディレクトリ, ''はpwdの位置
+let g:ctrlp_custom_ignore = 'vendor\|tmp\|\node_modules\|DS_Store\|git\|__pycache__'
+" extension matcher.
+let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+nnoremap <silent> :cb :<C-u>CtrlPBuffer<CR>
+nnoremap <silent> :cm :<C-u>CtrlPMRU<CR>
+
+
+"=================================
+"Lightline
+"=================================
+" ステータスバーのファイル名表示を相対パスにする
+let g:lightline = { 'component': { 'filename': '%f'} }
+
+" "==================================
+" " Syntastic
+" "==================================
+" "HTMLはチェックしない
+" let g:syntastic_mode_map = { 'mode': 'active',
+"                            \ 'passive_filetypes': ['html'] }
+" let g:syntastic_ruby_checkers = ['rubocop'] " Rubyのスタイルチェッカー gem rubocopが必須
+" let g:syntastic_python_checkers = ["flake8"] " pythonのスタイルチェッカー pip flake8が必須
+" " javacript
+" let g:syntastic_javascript_checkers = ['eslint'] " npm eslint が必須, カレントディレクトリに.eslintrc*が必須
+" let g:syntastic_javascript_eslint_exe = 'npx eslint --'
+"
+"==================================
+" ALE (Asyncronous Lint Engine)
+"==================================
+" ALEの基本設定
+let g:ale_lint_on_text_changed = 'never' " 入力中の構文チェックを無効化
+let g:ale_lint_on_save = 1               " 保存時に構文チェックを行う
+let g:ale_fix_on_save = 1                " 保存時に自動フォーマットを行う
+let g:ale_lint_on_enter = 0              " ファイル開くタイミングでチェック 0=off
+" let g:ale_open_list = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+" Linter
+let g:ale_linters = {
+      \  'python': ['flake8'],
+      \ 'javascript': ['eslint'],
+      \ 'ruby': ['rubocop']
+      \ }
+" Formatter
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'python': ['autopep8']
+\}
+
+"=================================
+" AutoPEP8
+"=================================
+" いちいちdiffを表示しないようにする
+let g:autopep8_disable_show_diff=1
+
+" ===============================
+" Rails
+" ===============================
+
+
+"=============================
+" JsDoc~
+" `npm -g install lehre`が必要
+" lehreのパスを指定する必要がある
+"=============================
+" nodeのbinのパスを取得する
+:let nodebin = system('echo -n $(npm bin -g)')
+:let g:jsdoc_lehre_path = nodebin.'/lehre'
+
+"==========================
+" Prettier
+"==========================
+:let g:prettier#config#tab_width= 2
+:let g:prettier#config#use_tabs = 'auto'
+
+"===============================
+" Command Alias
+"===============================
+" dein install
+:command! DeinInstall call dein#install()
+" XMLツリーの整形(HTMLも)
+:command! XMLFormat %s/></>\r</g | filetype indent on | setf xml | normal gg=G
+" Rubocopでフォーマット置換
+:command! -bar RubocopA call system("rubocop -a " . expand("%:p"))|edit!|write
+" カラーテーマのプレビュー
+:command! Ucolorscheme Unite -auto-preview colorscheme
+" Autopep8でコード自動修正
+:command! -bar Autopep8I call system("autopep8 -i " . expand("%:p"))|edit!|write
+" eslintでコード自動修正
+:command! -bar ESLintFix call system("npx eslint --fix" . expand("%:p"))|edit!|write
+" JsDocのエイリアス
+:command! JSDOC :JsDoc
+:command! JSDOCFormat :JsDocFormat
+
